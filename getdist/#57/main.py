@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 
 from getdist import MCSamples, plots
 
+# import getdist
+# print(getdist.__version__);exit()
+
 import matplotlib
 matplotlib.use('QT5Agg')
 
@@ -18,6 +21,8 @@ def load_samples(directory, filename="samples"):
     ) as f:
         samples = pickle.load(f)
 
+    samples.sampler = 'nested' # NOTE: Why does it not work?
+
     if not isinstance(samples, MCSamples):
         raise ValueError("...")
 
@@ -26,8 +31,10 @@ def load_samples(directory, filename="samples"):
 
 def triangle_plot(list_of_obj, **kwargs):
 
-    if isinstance(list_of_obj, list):
-        pass
+    # if isinstance(list_of_obj, list):
+    #     for obj in list_of_obj:
+    #         print(obj.sampler)
+    #     exit()
 
     plotter = plots.get_subplot_plotter(
         width_inch=12,
